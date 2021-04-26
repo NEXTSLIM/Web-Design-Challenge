@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Web Visualization Dashboard (Latitude)</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  </head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">LATITUDE</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#Summary">Summary</a></li>
+          <li class="dropdown"><a href="#"><span>Plots</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a class="nav-link scrollto" href="#Max Temperature" >Max Temperature</a></li>
+              <li><a class="nav-link scrollto o" href="#Humidity" >Humidity</a></li>
+              <li><a class="nav-link scrollto" href="#Cloudiness"> Cloudiness</a></li>
+              <li><a class="nav-link scrollto" href="#Wind Speed"> Wind Speed</a></li>
+            </ul>
+          </li>
+          
+        
+          <li><a class="nav-link scrollto" href="#Comparison">Comparison</a></li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="data.html">Data</a>
+            </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="#Summary">Get Started</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-9 text-center">
+          <h1>The purpose of this project was to analyze how weather changes as you get closer to the equater. </h1>
+          <br> 
+          <h2>To accomplish this analysis. we first pulled data from the OpenWeatherMapAPI to assemble a dataset on over 500 cities.</h2>
+        </div>
+      </div>
+      <div class="text-center">
+      <a class="btn-get-started scrollto" href="#Summary" >Get Started</a>
+      </div>
+
+      <div class="row icon-boxes">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-temp-hot-line"></i></div>
+            <h3 class="title"><a href="#Max Temperature">Temperature (F) vs. Latitude</a></h4>
+            <p class="description"><br>Closer to equator line(latitude 0) the temperature gets hotter ?</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-temp-cold-fill" style='font-size:36px'></i></div>
+            <h4 class="title"><a href="#Humidity">Humidity (%) vs. Latitude</a></h4>
+            <p class="description"><br>Humidity is more consistent with higher latitudes ?</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-cloud-windy-line"></i></div>
+            <h5 class="title"><a href="#Cloudiness">Cloudiness (%) vs. Latitude</a></h4>
+            <p class="description"><br>There is  radom relationship between latitude and Cloudiness ?</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="500">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-windy-fill"></i></div>
+            <h6 class="title"><a href="#Wind Speed">Wind Speed vs. Latitude</a></h4>
+            <p class="description">As Farther away from the equator (latitude 0), thewind speeds will be generally greater ?</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Summary Section ======= -->
+    <section id="Summary" class="Summary">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Summary</h2>
+         <h1>Creating a Python script to visualize the weather of 500+ cities across the world of varying distance from the equator. </h1>
+         <br> 
+         <p >After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude. Factors we looked at included:temperature, cloudiness, windspeed, and humidity. <br>  This site provides the source data and visualizations created as part of the analysis,as well as explanations and descriptions of any trends and correlations witnessed.</p> <div class="content">
+          <br> <br>  
+          <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12 col-md-7">
+                  <div class="box">
+                    <div class="header">
+                      <h1 class="text-secondary">Summary: Latitude vs X</h1>
+                      <hr class="light">
+                    </div>
+                    <div class="content">
+                      <img src="images/Fig1.png" class="left_shown rounded float-left" alt="Max Temperature">
+                      
+                  </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                    <div class="box">
+                      <div class="header">
+                        <h1 class="text-secondary">Visualizations</h1>
+                        <hr class="light">
+                      </div>
+                      <div class="content-fluid">
+                        <div>
+                          <div class="row padding">
+                            <div class="col-6">
+                              <a href="#Max Temperature"><img src="images/Fig1.png" class="img-fluid" alt="Max Temperature"></a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#Humidity"><img src="images/Fig2.png" class="img-fluid" alt="Humidity"></a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#Cloudiness"><img src="images/Fig3.png" class="img-fluid" alt="Cloudiness"></a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#Wind Speed"><img src="images/Fig4.png" class="img-fluid" alt="Wind Speed"></a>
+                            </div>
+          
+                          </div>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                      </div>
+       
+    </section><!-- End About Section -->
+
+   <!-- ======= Tools Section ======= -->
+   <section id="Tools" class="Tools section-bg">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-1.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-2.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-3.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-4.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-5.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-6.png" class="img-fluid" alt="">
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Tools Section -->
+
+    <!-- ======= Max Temperature Section ======= -->
+    <section id="Max Temperature" class="tm-mb-1" class="Max Temperature-bg">
+            <div class="tm-row tm-about-row" data-aos="fade-up">
+
+              <h1 class="text-secondary">Visualizations: Max Temperature</h1>
+              <hr class="light">
+            </div>
+            <div class="content-fluid">
+              <div>
+                <div class="row padding">
+               <div class="tm-section-1-l">
+                  <img src="images/Fig1.png" alt="Max Temperature" class="section-title">
+              </div>
+              <article class="tm-section-1-r tm-bg-color-8">
+                  <h2 class="section-title h2">Max Temperature</h2>
+                      <br> 
+                  <h3> As expected, the weather becomes significantly warmer as one approaches the equator (0 Deg. Latitude).<br><br> More interestingly, however, is the fact that the southern hemisphere tends to be warmer this time of the year than the northern hemisphere. This may be due to the tilt of the earth at the time of the year this data was gathered.</h3>
+                  <hr>
+               </article>
+          </div>
+      
+    </section><!-- End Max Temperature Section -->
+    <section id="Tools" class="Tools section-bg">
+      <div class="container">
+       </div> 
+      </section>
+  
+          
+    <!-- ======= Humidity Section ======= -->
+    <section id="Humidity" class="tm-mb-1" class="Humidity-bg">
+      <div class="tm-row tm-about-row" data-aos="fade-up">
+        <h1 class="text-secondary">Visualizations: Humidity</h1>
+       <hr class="light">
+      </div>
+      <div class="content-fluid">
+        <div>
+          <div class="row padding">
+         <div class="tm-section-1-l">
+            <img src="images/Fig2.png" alt="Humidity" class="section-title">
+        </div>
+        <article class="tm-section-1-r tm-bg-color-8">
+            <h2 class="section-title h2">Humidity</h2>
+                <br> 
+            <h3> Humidity does not show a strong correlation to latitude.<br> <br>  The visualization shows a great variety of humidity percentages at different latitudes. Therefore, we cannot conclude that there is a conclusive pattern between humidity and latitude.</h3>
+            <hr>
+         </article>
+    </div>
+        
+    </section><!-- End Humidity Section -->
+  </section><!-- End Max Temperature Section -->
+  <section id="Tools" class="Tools section-bg">
+    <div class="container">
+     </div> 
+    </section>
+  <!-- ======= Cloudiness Section ======= -->
+  <section id="Cloudiness" class="tm-mb-1" class="Cloudiness-bg">
+    <div class="tm-row tm-about-row" data-aos="fade-up">
+      <h1 class="text-secondary">Visualizations: Cloudiness</h1>
+     <hr class="light">
+    </div>
+    <div class="content-fluid">
+      <div>
+        <div class="row padding">
+       <div class="tm-section-1-l">
+          <img src="images/Fig3.png" alt="Cloudiness" class="section-title">
+      </div>
+      <article class="tm-section-1-r tm-bg-color-8">
+          <h2 class="section-title h2">Cloudiness</h2>
+              <br> 
+          <h3> Cloudiness does not show a strong correlation to latitude. <br> <br>  The visualization shows a great variety of cloudiness percentages at different latitudes. Therefore, we cannot conclude that there is a conclusive pattern between cloudiness and latitude.</h3>
+          <hr>
+       </article>
+        </div>
+      
+  </section><!-- End Cloudiness Section -->
+</section><!-- End Max Temperature Section -->
+<section id="Tools" class="Tools section-bg">
+  <div class="container">
+   </div> 
+  </section>
+   <!-- ======= Wind Speed Section ======= -->
+   <section id="Wind Speed" class="tm-mb-1" class="Wind Speed-bg">
+    <div class="tm-row tm-about-row" data-aos="fade-up">
+      <h1 class="text-secondary">Visualizations: Wind Speed</h1>
+     <hr class="light">
+    </div>
+    <div class="content-fluid">
+      <div>
+        <div class="row padding">
+       <div class="tm-section-1-l">
+          <img src="images/Fig4.png" alt="Wind Speed" class="section-title">
+      </div>
+      <article class="tm-section-1-r tm-bg-color-8">
+          <h2 class="section-title h2">Wind Speed</h2>
+              <br> 
+          <h3> Wind speed appears to slightly increase as we move away from the equator. <br> <br> However, to conclusively describe a pattern, we would need to go beyond the range in data to reach cities at closer to the poles. Only then can we have a sample large to confirm the pattern.</h3>
+          <hr>
+       </article>
+  </div>
+   
+      
+  </section><!-- End Wind Speed Section -->
+</section><!-- End Max Temperature Section -->
+<section id="Tools" class="Tools section-bg">
+  <div class="container">
+   </div> 
+  </section>
+    <!-- ======= Comparison Section ======= -->
+    <section id="Comparison" class="Comparison">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Comparison</h2>
+          <hr>
+          <h1>"What's the weather like as we approach the equator?" <br> Now, we know what you may be thinking: "Duh. It gets hotter..." <br> But, if pressed, how would you prove it?</h1>
+          <hr>
+        </div>
+
+        <div class="box">
+          <h3 class="text-secondary" style="padding: 10px">Comparison: Latitude vs X</h3>
+          <hr class="light">
+          <h6 class="text-secondary" style="padding: 10px">Click any plot to get an in-depth analysis.</h6>
+          <div class="container" style="padding-bottom: 40px;">
+          <div class="row">
+            <div class="col-lg-6" style="padding: 30px;">
+            <div class="text-secondary" style="text-align: center">vs. Max Temperature</div>
+            <a href="https://github.com/NEXTSLIM/Python-API-Challenge/blob/main/WeatherPy/WeatherPy.ipynb">
+              <img class="img-fluid" src="images/Fig1.png" alt="Max Temperature Image">
+            </a>
+            </div>
+            <div class="col-lg-6" style="padding: 30px;">
+            <div class="text-secondary" style="text-align: center">vs. Humidity</div>
+            <a href="https://github.com/NEXTSLIM/Python-API-Challenge/blob/main/WeatherPy/WeatherPy.ipynb">
+              <img class="img-fluid" src="images/Fig2.png" alt="Humidity Graph">
+            </a>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-lg-6" style="padding: 30px;">
+            <div class="text-secondary" style="text-align: center">vs. Cloudiness</div>
+            <a href="https://github.com/NEXTSLIM/Python-API-Challenge/blob/main/WeatherPy/WeatherPy.ipynb">
+              <img class="img-fluid" src="images/Fig3.png" alt="Cloudiness Graph">
+            </a>
+    
+            </div>
+            <div class="col-lg-6" style="padding: 30px;">
+            <div class="text-secondary" style="text-align: center">vs. Wind Speed</div>
+            <a href="https://github.com/NEXTSLIM/Python-API-Challenge/blob/main/WeatherPy/WeatherPy.ipynb">
+              <img class="img-fluid" src="images/Fig4.png" alt="Wind Speed Graph">
+            </a>
+            </div>
+          </div>
+          </div>
+        </div>
+    </section><!-- End Comparison Section -->
+    
+     <!-- ======= Tools Section ======= -->
+   <section id="Tools" class="Tools section-bg">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-1.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-2.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-3.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-4.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-5.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+          <img src="assets/img/Tools/client-6.png" class="img-fluid" alt="">
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Tools Section -->
+        <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <hr>
+          <p> I am a loyal hardworking team member with experience in category management and sales analysis. I love telling stories with data sets.</p>
+        </div>
+
+        <div>
+          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50373.187697993875!2d145.00600633596656!3d-37.89948351250425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6697981ef625f%3A0x77d759e4999584bd!2sGlen%20Eira%2C%20VIC!5e0!3m2!1sen!2sau!4v1619354066445!5m2!1sen!2sau" frameborder="0" allowfullscreen></iframe>
+          
+         
+        </div>
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>South Eastern Suburbs,Melbourne, VIC</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>Renzoonly@outlook.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>(61) 0490 934 658</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-3">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>RenzOnly</h3>
+            <p>
+              South Eastern Suburbs <br>
+              Melbourne, VIC<br>
+              Australia <br><br>
+              <strong>Phone:</strong> (61) 0490 934 658<br>
+              <strong>Email:</strong> Renzoonly@outlook.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://github.com/NEXTSLIM/">About me</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/renzoonly">Services</a></li>
+              
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4> Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/renzoonly">Data Analysis; Sales Analysis</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/renzoonly">Category management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/renzoonly">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/renzoonly">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/renzoonly">Customer Liaison</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join me Newsletter</h4>
+            <p>Be careful what you say don't overload</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>RenzOnly</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
+          Designed by <a href="https://github.com/NEXTSLIM/">NEXTSLIM</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="https://twitter.com/RenzoOnly" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/RenzoOnly" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/renzoonly/" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="www.linkedin.com/in/renzoonly" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
